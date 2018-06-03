@@ -1,0 +1,118 @@
+chef practice:
+==============
+
+
+sudo -i
+
+
+yum update -y 
+
+step 1: workstation set up 
+
+
+now we are downloading the Chef Development Kit:
+
+
+wget https://packages.chef.io/files/stable/chefdk/1.5.0/el/6/chefdk-1.5.0-1.el6.x86_64.rpm
+
+
+[root@workstation chef]# wget https://packages.chef.io/files/stable/chefdk/1.5.0/el/6/chefdk-1.5.0-1.el6.x86_64.rpm
+--2017-11-11 00:44:10--  https://packages.chef.io/files/stable/chefdk/1.5.0/el/6/chefdk-1.5.0-1.el6.x86_64.rpm
+Resolving packages.chef.io (packages.chef.io)... 151.101.34.110
+Connecting to packages.chef.io (packages.chef.io)|151.101.34.110|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 108045477 (103M) [application/x-rpm]
+Saving to: ‘chefdk-1.5.0-1.el6.x86_64.rpm’
+
+100%[==============================================================================================================================>] 108,045,477 60.8MB/s   in 1.7s
+
+2017-11-11 00:44:11 (60.8 MB/s) - ‘chefdk-1.5.0-1.el6.x86_64.rpm’ saved [108045477/108045477]
+
+
+step 2: now we install chef dovelopment kit
+
+
+rpm -vh  rpm -ivh chefdk-1.5.0-1.el6.x86_64.rpm
+
+
+example:
+
+[root@workstation chef]# ls
+chefdk-1.5.0-1.el6.x86_64.rpm
+
+
+[root@workstation chef]# rpm -ivh chefdk-1.5.0-1.el6.x86_64.rpm
+warning: chefdk-1.5.0-1.el6.x86_64.rpm: Header V4 DSA/SHA1 Signature, key ID 83ef826a: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:chefdk-1.5.0-1.el6               ################################# [100%]
+Thank you for installing Chef Development Kit!
+
+
+chef -v
+
+[root@workstation chef]# chef -v
+Chef Development Kit Version: 1.5.0
+chef-client version: 12.21.2
+delivery version: master (17c1b0fed9be4c70f69091a6d21a4cbf0df60a23)
+berks version: 5.6.4
+kitchen version: 1.16.0
+inspec version: 1.25.1
+
+
+
+[root@workstation chef]# knife -v
+Chef: 12.21.2
+
+
+step 3: now we download the staterkit from chef-server
+
+
+step 4: now we untar the starterkit
+
+
+unzip chef-starter.zip
+
+
+step 5: we move to chef-repo directory
+
+
+cd chef-repo
+
+---------------------------------------------------------
+
+
+
+knife client list
+
+
+knife node list
+
+
+knife cookbook list
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+chef node set up:
+================
+
+step 1: now we download chef-client package first
+
+
+wget https://packages.chef.io/files/stable/chef/13.6.4/el/7/chef-13.6.4-1.el7.x86_64.rpm 
+
+
+step 2: now install chef-client package on the node side
+
+rpm -ivh chef-13.6.4-1.el7.x86_64.rpm
+
+
+step 3:
+
+rpm -qa chef
+
+chef-13.6.4-1.el7.x86_64 
+
+step 4:

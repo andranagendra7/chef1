@@ -1,0 +1,89 @@
+chef histoy commands:
+
+ 1  yum update -y
+    2  cat /etc/issue
+    3  uname -a
+    4  yum install curl -y
+    5  curl https://packages.chef.io/files/stable/chefdk/1.5.0/el/6/chefdk-1.5.0-1.el6.x86_64.rpm
+    6  ls
+    7  cd /root/
+    8  ls
+    9  mkdir chef
+   10  cd chef
+   11  ls
+   12  yum install wget -y
+   13  wget https://packages.chef.io/files/stable/chefdk/1.5.0/el/6/chefdk-1.5.0-1.el6.x86_64.rpm
+   14  ls
+   15  rpm -ivh chefdk-1.5.0-1.el6.x86_64.rpm
+   16  chef -v
+   17  knife -v
+   18  yum install git -y
+   19  git --version
+   20  git clone https://github.com/andranagendra/chefdk-and-starterkit.git
+   21  ls
+   22  cd chefdk-and-starterkit/
+   23  ls
+   24  cp chef-repo /root/chef/
+   25  cp -R chef-repo /root/chef/
+   26  cd ..
+   27  ls
+   28  cd chef-repo/
+   29  ls
+   30  knife client list
+   31  cp /home/ec2-user/chef-starter.zip .
+   32  git clone https://github.com/Thinkpositvie/chefrepo.git
+   33  ls
+   34  mv chef-starter.zip /root/chef/
+   35  cd ..
+   36  ls
+   37  rpm -e chefdk-1.5.0-1.el6.x86_64.rpm
+   38  chef -v
+   39  ls
+   40  rm chefdk-1.5.0-1.el6.x86_64.rpm
+   41  rm chefdk-1.5.0-1.el6.x86_64.rpm  -f
+   42  ls
+   43  rm -f chefdk-and-starterkit/
+   44  rm -R chefdk-and-starterkit/
+   45  rm -Rf chefdk-and-starterkit/
+   46  ls
+   47  rm -Rf chef-repo/
+   48  unzip chef-starter.zip
+   49  yum install unzip -y
+   50  unzip chef-starter.zip
+   51  ls
+   52  yum install git-all -y
+   53  yum install git -y
+   54  git init
+   55  git pull https://github.com/Thinkpositvie/chefrepo.git
+   56  ls
+   57  git remote add n https://github.com/Thinkpositvie/chefrepo.git
+   58  git remote
+   59  git add .
+   60  git commit -m "new starterkit"
+   61  ls
+   62  ssh-keygen
+   63  cat /root/.ssh/id_rsa.pub
+   64  git push n maser
+   65  ls
+   66  git push n master
+   67  ls
+   68  knife client list
+   69  ls
+   70  cd chef-repo/
+   71  LS
+   72  knife client list
+   73  knife node --help
+   74  knife node delete node
+   75  knife node delete node1 -y
+   76  knife node delete node2 -y
+   77  knife node delete node3 -y
+   78  knife node delete node4 -y
+   79  ls
+   80  ls -a
+   81  ls .chef/
+   82  cat .chef/knife.rb
+   83  cat .chef/nag9991.pem
+   84  uname -m
+   85  clear
+   86  history
+

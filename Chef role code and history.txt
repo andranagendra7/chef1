@@ -1,0 +1,170 @@
+chef-role:
+==========
+Create a role
+
+To add a role named role1, enter:
+
+$ knife role create role1
+In the $EDITOR enter the role data in JSON:
+
+{
+   "name": "role1",
+   "default_attributes": {
+   },
+   "json_class": "Chef::Role",
+   "run_list": ["recipe[cookbook_name::recipe_name]",
+                 "role[role_name]"
+   ],
+   "description": "",
+   "chef_type": "role",
+   "override_attributes": {
+  
+
+knife role create [ role-name ]
+
+
+[root@ip-172-31-79-74 roles]# knife bootstrap 54.158.83.61 --sudo -x ec2-user -N "NOde1" -r role[devops1]
+Creating new client for NOde1
+Creating new node for NOde1
+Connecting to 54.158.83.61
+Failed to authenticate ec2-user - trying password auth
+[root@ip-172-31-79-74 roles]# knife bootstrap 54.158.83.61 --sudo -x ec2-user -i /root/shell.pem -N "NOde1" -r role[devops1]
+Node NOde1 exists, overwrite it? (Y/N) y
+Client NOde1 exists, overwrite it? (Y/N) y
+Creating new client for NOde1
+Creating new node for NOde1
+Connecting to 54.158.83.61
+54.158.83.61 -----> Installing Chef Omnibus (-v 12)
+54.158.83.61 downloading https://omnitruck-direct.chef.io/chef/install.sh
+54.158.83.61   to file /tmp/install.sh.2850/install.sh
+54.158.83.61 trying wget...
+54.158.83.61 el 6 x86_64
+54.158.83.61 Getting information for chef stable 12 for el...
+54.158.83.61 downloading https://omnitruck-direct.chef.io/stable/chef/metadata?v=12&p=el&pv=6&m=x86_64
+54.158.83.61   to file /tmp/install.sh.2855/metadata.txt
+54.158.83.61 trying wget...
+54.158.83.61 sha1       e1f7d3c6ee99aedeac4ad8a950877af7edc8164c
+54.158.83.61 sha256     6a47f8f88d3f4568defa13076a21a005bd48ee3e7100d3c66d8f0cc41554306e
+54.158.83.61 url        https://packages.chef.io/files/stable/chef/12.21.26/el/6/chef-12.21.26-1.el6.x86_64.rpm
+54.158.83.61 version    12.21.26
+54.158.83.61 downloaded metadata file looks valid...
+54.158.83.61 downloading https://packages.chef.io/files/stable/chef/12.21.26/el/6/chef-12.21.26-1.el6.x86_64.rpm
+54.158.83.61   to file /tmp/install.sh.2855/chef-12.21.26-1.el6.x86_64.rpm
+54.158.83.61 trying wget...
+54.158.83.61 Comparing checksum with sha256sum...
+54.158.83.61 Installing chef 12
+54.158.83.61 installing with rpm...
+54.158.83.61 warning: /tmp/install.sh.2855/chef-12.21.26-1.el6.x86_64.rpm: Header V4 DSA/SHA1 Signature, key ID 83ef826a: NOKEY
+54.158.83.61 Preparing...                          ################################# [100%]
+54.158.83.61 Updating / installing...
+54.158.83.61    1:chef-12.21.26-1.el6              ################################# [100%]
+54.158.83.61 Thank you for installing Chef!
+54.158.83.61 Starting the first Chef Client run...
+54.158.83.61 [2017-11-14T05:07:23+00:00] INFO: Forking chef instance to converge...
+54.158.83.61 Starting Chef Client, version 12.21.26
+54.158.83.61 [2017-11-14T05:07:23+00:00] INFO: *** Chef 12.21.26 ***
+54.158.83.61 [2017-11-14T05:07:23+00:00] INFO: Platform: x86_64-linux
+54.158.83.61 [2017-11-14T05:07:23+00:00] INFO: Chef-client pid: 2927
+54.158.83.61 [2017-11-14T05:07:23+00:00] INFO: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Setting the run_list to ["role[devops1]"] from CLI options
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Run List is [role[devops1]]
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Run List expands to [think, web]
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Starting Chef Run for NOde1
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Running start handlers
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Start handlers complete.
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: HTTP Request Returned 404 Not Found:
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Error while reporting run start to Data Collector. URL: https://api.chef.io/organizations/test5179/data-collector Exception: 404 -- 404 "Not Found"  (This is normal if you do not have Chef Automate)
+54.158.83.61 resolving cookbooks for run list: ["think", "web"]
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Loading cookbooks [think@0.220.0, web@0.1.0]
+54.158.83.61 Synchronizing Cookbooks:
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Storing updated cookbooks/web/attributes/default.rb in the cache.
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Storing updated cookbooks/web/files/default/index.html in the cache.
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Storing updated cookbooks/web/templates/default/index.html.erb in the cache.
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Storing updated cookbooks/think/CHANGELOG.md in the cache.
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Storing updated cookbooks/think/metadata.rb in the cache.
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Storing updated cookbooks/think/recipes/default.rb in the cache.
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Storing updated cookbooks/web/templates/default/httpd.conf.erb in the cache.
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Storing updated cookbooks/web/CHANGELOG.md in the cache.
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Storing updated cookbooks/web/metadata.rb in the cache.
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Storing updated cookbooks/web/templates/default/cicd.pem in the cache.
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Storing updated cookbooks/web/README.md in the cache.
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Storing updated cookbooks/web/recipes/default.rb in the cache.
+54.158.83.61   - web (0.1.0)
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: Storing updated cookbooks/think/README.md in the cache.
+54.158.83.61   - think (0.220.0)
+54.158.83.61 Installing Cookbook Gems:
+54.158.83.61 Compiling Cookbooks...
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: HTTP Request Returned 404 Not Found:
+54.158.83.61 Converging 7 resources
+54.158.83.61 Recipe: think::default
+54.158.83.61   * directory[/root/chef] action create[2017-11-14T05:07:25+00:00] INFO: Processing directory[/root/chef] action create (think::default line 11)
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: directory[/root/chef] created directory /root/chef
+54.158.83.61
+54.158.83.61     - create new directory /root/chef
+54.158.83.61   * file[/root/nag] action create[2017-11-14T05:07:25+00:00] INFO: Processing file[/root/nag] action create (think::default line 18)
+54.158.83.61 [2017-11-14T05:07:25+00:00] INFO: file[/root/nag] created file /root/nag
+54.158.83.61
+54.158.83.61     - create new file /root/nag[2017-11-14T05:07:25+00:00] INFO: file[/root/nag] updated file contents /root/nag
+54.158.83.61
+54.158.83.61     - update content in file /root/nag from none to 2c8a11
+54.158.83.61     --- /root/nag  2017-11-14 05:07:25.967876385 +0000
+54.158.83.61     +++ /root/.chef-nag20171114-2927-n4etrj        2017-11-14 05:07:25.967876385 +0000
+54.158.83.61     @@ -1 +1,2 @@
+54.158.83.61     +welcomet devops world
+54.158.83.61   * linux_user[nagendra] action create[2017-11-14T05:07:25+00:00] INFO: Processing linux_user[nagendra] action create (think::default line 26)
+54.158.83.61 [2017-11-14T05:07:26+00:00] INFO: linux_user[nagendra] created
+54.158.83.61
+54.158.83.61     - create user nagendra
+54.158.83.61 Recipe: web::default
+54.158.83.61   * yum_package[httpd] action install[2017-11-14T05:07:26+00:00] INFO: Processing yum_package[httpd] action install (web::default line 11)
+54.158.83.61 [2017-11-14T05:07:26+00:00] INFO: yum_package[httpd] installing httpd-2.2.34-1.16.amzn1 from amzn-updates repository
+54.158.83.61 [2017-11-14T05:07:30+00:00] INFO: yum_package[httpd] installed httpd at 2.2.34-1.16.amzn1
+54.158.83.61
+54.158.83.61     - install version 2.2.34-1.16.amzn1 of package httpd
+54.158.83.61   * service[httpd] action enable[2017-11-14T05:07:30+00:00] INFO: Processing service[httpd] action enable (web::default line 17)
+54.158.83.61 [2017-11-14T05:07:30+00:00] INFO: service[httpd] enabled
+54.158.83.61
+54.158.83.61     - enable service service[httpd]
+54.158.83.61   * service[httpd] action start[2017-11-14T05:07:30+00:00] INFO: Processing service[httpd] action start (web::default line 17)
+54.158.83.61 [2017-11-14T05:07:30+00:00] INFO: service[httpd] started
+54.158.83.61
+54.158.83.61     - start service service[httpd]
+54.158.83.61   * template[/etc/httpd/conf/httpd.conf] action create[2017-11-14T05:07:30+00:00] INFO: Processing template[/etc/httpd/conf/httpd.conf] action create (web::default line 24)
+54.158.83.61 [2017-11-14T05:07:30+00:00] INFO: template[/etc/httpd/conf/httpd.conf] backed up to /var/chef/backup/etc/httpd/conf/httpd.conf.chef-20171114050730.881707
+54.158.83.61 [2017-11-14T05:07:30+00:00] INFO: template[/etc/httpd/conf/httpd.conf] updated file contents /etc/httpd/conf/httpd.conf
+54.158.83.61
+54.158.83.61     - update content in file /etc/httpd/conf/httpd.conf from 185e05 to b887b2
+54.158.83.61     --- /etc/httpd/conf/httpd.conf 2017-11-01 18:45:26.000000000 +0000
+54.158.83.61     +++ /etc/httpd/conf/.chef-httpd20171114-2927-19mcym1.conf      2017-11-14 05:07:30.855718018 +0000
+54.158.83.61     @@ -133,8 +133,8 @@
+54.158.83.61      # prevent Apache from glomming onto all bound IP addresses (0.0.0.0)
+54.158.83.61      #
+54.158.83.61      #Listen 12.34.56.78:80
+54.158.83.61     -Listen 80
+54.158.83.61     -
+54.158.83.61     +#Listen 80
+54.158.83.61     +Listen 81
+54.158.83.61      #
+54.158.83.61      # Dynamic Shared Object (DSO) Support
+54.158.83.61      #
+54.158.83.61   * cookbook_file[/var/www/html/index.html] action create[2017-11-14T05:07:30+00:00] INFO: Processing cookbook_file[/var/www/html/index.html] action create (web::default line 30)
+54.158.83.61 [2017-11-14T05:07:30+00:00] INFO: cookbook_file[/var/www/html/index.html] created file /var/www/html/index.html
+54.158.83.61
+54.158.83.61     - create new file /var/www/html/index.html[2017-11-14T05:07:30+00:00] INFO: cookbook_file[/var/www/html/index.html] updated file contents /var/www/html/index.html
+54.158.83.61
+54.158.83.61     - update content in file /var/www/html/index.html from none to 922e78
+54.158.83.61     --- /var/www/html/index.html   2017-11-14 05:07:30.887716980 +0000
+54.158.83.61     +++ /var/www/html/.chef-index20171114-2927-1099bvg.html        2017-11-14 05:07:30.887716980 +0000
+54.158.83.61     @@ -1 +1,2 @@
+54.158.83.61     +<html> <body> <h1> 'welcome to chef enviranmetal world'</h1></body></html>
+54.158.83.61 [2017-11-14T05:07:31+00:00] INFO: Chef Run complete in 6.041473868 seconds
+54.158.83.61
+54.158.83.61 Running handlers:
+54.158.83.61 [2017-11-14T05:07:31+00:00] INFO: Running report handlers
+54.158.83.61 Running handlers complete
+54.158.83.61 [2017-11-14T05:07:31+00:00] INFO: Report handlers complete
+54.158.83.61 Chef Client finished, 8/8 resources updated in 07 seconds
+54.158.83.61 [2017-11-14T05:07:31+00:00] INFO: Sending resource update report (run-id: 15597753-bc8f-4776-a572-810f28f94179)
+
+
+

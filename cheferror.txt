@@ -1,0 +1,104 @@
+error:
+=====
+
+[root@ip-172-31-75-137 ~]# chef-apply f.rb
+[2017-12-10T05:30:17+00:00] FATAL: Stacktrace dumped to /var/chef/cache/chef-stacktrace.out
+[2017-12-10T05:30:17+00:00] FATAL: Stacktrace dumped to /var/chef/cache/chef-stacktrace.out
+[2017-12-10T05:30:17+00:00] FATAL: Please provide the contents of the stacktrace.out file if you file a bug report
+[2017-12-10T05:30:17+00:00] FATAL: Please provide the contents of the stacktrace.out file if you file a bug report
+[2017-12-10T05:30:17+00:00] FATAL: Chef::Exceptions::ValidationFailed: Option action must be equal to one of: nothing, create, delete!  You passed :remove.
+[2017-12-10T05:30:17+00:00] FATAL: Chef::Exceptions::ValidationFailed: Option action must be equal to one of: nothing, create, delete!  You passed :remove.
+
+knife cookbook create nag
+FATAL: knife cookbook create has been removed. Please use `chef generate cookbook` from the ChefDK
+resources:
+=========
+
+error 3;
+======
+
+[root@ip-172-31-75-137 recipes]# knife cookbook upload nag
+ERROR: Could not find cookbook nag in your cookbook path, skipping it
+Uploaded 0 cookbook.
+
+
+error 4:
+=======
+
+[root@ip-172-31-64-239 ~]# chef-client -r recipe[nag]
+Starting Chef Client, version 13.6.4
+resolving cookbooks for run list: ["nag"]
+Synchronizing Cookbooks:
+  - nag (0.2.0)
+Installing Cookbook Gems:
+Compiling Cookbooks...
+
+================================================================================
+Recipe Compile Error in /var/chef/cache/cookbooks/nag/recipes/default.rb
+================================================================================
+
+Chef::Exceptions::ValidationFailed
+----------------------------------
+Option action must be equal to one of: nothing, enable, disable, start, stop, re                                                                                        start, reload, mask, unmask!  You passed :enabled.
+
+Cookbook Trace:
+---------------
+  /var/chef/cache/cookbooks/nag/recipes/default.rb:12:in `block in from_file'
+  /var/chef/cache/cookbooks/nag/recipes/default.rb:11:in `from_file'
+
+Relevant File Content:
+----------------------
+/var/chef/cache/cookbooks/nag/recipes/default.rb:
+
+  5:  # Copyright:: 2017, The Authors, All Rights Reserved.
+  6:  package "httpd"do
+  7:
+  8:  action :install
+  9:
+ 10:  end
+ 11:  service "httpd"do
+ 12>> action [:enabled, :start]
+ 13:  end
+ 14:  file "/root/index.html"do
+ 15:
+ 16:  action :create
+ 17:  content "welcome devops engineer"
+ 18:  end
+ 19:
+ 20:
+
+System Info:
+------------
+chef_version=13.6.4
+platform=amazon
+platform_version=2017.09
+ruby=ruby 2.4.2p198 (2017-09-14 revision 59899) [x86_64-linux]
+program_name=chef-client worker: ppid=24830;start=06:38:11;
+executable=/opt/chef/bin/chef-client
+
+
+Running handlers:
+[2017-12-10T06:38:13+00:00] ERROR: Running exception handlers
+Running handlers complete
+[2017-12-10T06:38:13+00:00] ERROR: Exception handlers complete
+Chef Client failed. 0 resources updated in 01 seconds
+[2017-12-10T06:38:13+00:00] FATAL: Stacktrace dumped to /var/chef/cache/chef-sta                                                                                        cktrace.out
+[2017-12-10T06:38:13+00:00] FATAL: Please provide the contents of the stacktrace                                                                                        .out file if you file a bug report
+[2017-12-10T06:38:13+00:00] ERROR: Option action must be equal to one of: nothin                                                                                        g, enable, disable, start, stop, restart, reload, mask, unmask!  You passed :ena                                                                                        bled.
+[2017-12-10T06:38:13+00:00] FATAL: Chef::Exceptions::ChildConvergeError: Chef ru                                                                                        n process exited unsuccessfully (exit code 1)
+
+
+
+file 
+
+directory
+
+package
+
+
+excute
+
+bash
+
+user
+

@@ -1,0 +1,42 @@
+chef total practiece:
+
+
+1  ping in.com
+    2  cat /etc/issue
+    3  git --version
+    4  wget https://packages.chef.io/files/stable/chefdk/1.5.0/el/6/chefdk-1.5.0-1.el6.x86_64.rpm
+    5  rpm -vih chefdk-1.5.0-1.el6.x86_64.rpm
+    6  git pull https://github.com/Thinkpositvie/chefrepo.git
+    7  git init
+    8  git pull https://github.com/Thinkpositvie/chefrepo.git
+    9  ls
+   10  rm chefdk-1.5.0-1.el6.x86_64.rpm
+   11  cd chef-repo/
+   12  knife client list
+   13  cd ..
+   14  rm -rf chef-repo/
+   15  unzip chef-starter.zip
+   16  cd chef-repo/
+   17  knife client list
+   18  knife nodelist
+   19  knife node list
+   20  knife cookbook list
+   21  knife cookbook create think
+   22  git init
+   23  cd cookbooks/
+   24  ls
+   25  cd think/
+   26  ls
+   27  cd recipes/
+   28  ls
+   29  vi default.rb
+   30  knife cookbook test think
+   31  knife cookbook upload  think
+   32  knife cookbook delete think
+   33  knife cookbook upload  think
+   34  cp /home/ec2-user/shell.pem /root/
+   35  knife bootstrap --sudo -x ec2-user -i /root/shell.pem -N "positive"
+   36  knife bootstrap 54.243.15.216--sudo -x ec2-user -i /root/shell.pem -N "positive"
+   37  knife bootstrap 54.243.15.216 --sudo -x ec2-user -i /root/shell.pem -N "positive"
+   38  knife bootstrap 54.243.15.216 --sudo -x ubuntu -i /root/shell.pem -N "positive"
+

@@ -1,0 +1,294 @@
+date 10/12/17
+-------------------------------
+
+WORKSTATION:
+===========
+
+To install worksation package:
+===========================
+
+wget https://packages.chef.io/files/stable/chefdk/2.4.17/el/6/chefdk-2.4.17-1.el6.x86_64.rpm
+
+rpm -ivh chefdk-2.4.17-1.el6.x86_64.rpm
+
+ rpm -qa chefdk --> TO check the package install or not
+ 
+
+ rpm -e chefdk  --> TO delete a pakcage
+
+=========================================================================================================================================================================
+
+Node :
+=====
+
+
+TO install the client package:
+==============================
+
+wget https://packages.chef.io/files/stable/chef/13.6.4/el/6/chef-13.6.4-1.el6.x86_64.rpm
+ 
+
+rpm  -ivh chef-13.6.4-1.el6.x86_64
+
+
+chef-client -->To get update's from chef-server and  excute the run_list cookbook (or) recipe's
+
+
+chef-client -r recipe[nag] --> To excute the perticular-cookbook  at the node side ( with-out add run_list )
+
+
+
+chef-client -r recipe[nag]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TO create chef-repo directory;
+============================
+
+now download the stater-kit from chef-server 
+
+chef-staterkit.zip --> 
+
+unzip  chef-staterkit.zip
+
+chef-repo
+
+
+cd chef-repo
+
+ls -a
+
+
+
+Now we add all infrastrucure server's to our chef-server:
+========================================================
+
+knife bootstrap ip --sudo -x username -P password -N << nodename >>
+
+ 
+
+knife node run list add node1 recipe[nag] ---> TO add cookbook's node run list 
+
+knife node run list add node1 recipe[ cookbookname::recipename ] ---> TO add  the perticular recipe to node
+
+knife node run list remove node1 recipe[ cookbookname ]
+
+
+commands:
+========
+
+chef-apply << filename.rb >> ---> To excute a recipe in worksation
+
+knife commands:
+=============
+ knife cookbook test nag
+
+knife cookbook create << cookbookname >>
+ 
+knife cookbook test << cookbookname >>
+
+knife cookbook upload << cookbookname >>
+
+knife cookbook delete << cookbookname >>
+
+
+knife cookbook list
+
+knife client list
+
+knife node list
+
+knife cookbook create cookbookname
+
+knife node show << nodename >>
+
+========================================================================================================================================================================
+
+chef-environment:
+================
+
+attributes code:
+===============
+
+default['cookname']['Lsten']="portnumber"
+
+
+template:
+========
+
+Listen <%=node[cookbookname][Listen]%>
+
+
+filesdirectory:
+==============
+
+index.html
+
+
+recipe code:
+===========
+
+package "httpd"do
+
+action :install
+
+end
+
+
+service "httpd"do
+
+ action [ :enable, :start]
+
+end
+
+template "/etc/httpd/conf/httpd.conf" do
+
+
+source "httpd.conf.erb"
+
+
+end
+cookbook_file "/var/www/html/index.html"do
+
+source "index.html"
+
+end
+
+
+ 
+========================================================================================================================================================================
+
+code:
+=====
+
+code 1;
+======
+
+file "/tmp/nag4"do
+
+action :create
+
+end
+
+code 2:
+=======
+
+directory "/tmp/nag"do
+
+action :create
+
+end
+
+code 3: TO create a directory
+======
+
+directory "/tmp/nag"do
+
+action :create
+
+end
+
+code 4: TO remove a directory
+======
+
+directory "/tmp/nag"do
+
+action :remove
+
+end
+
+
+code 6:
+======
+file "/tmp/nag4"do
+
+ action  :create
+ content "welcome to chef world "
+ mode    '0744'
+ owner   'ec2-user'
+
+end
+
+code 7:
+======
+
+package "httpd"do
+
+action :install
+
+end
+
+code 8:
+======
+
+package "httpd"do
+
+action :remove
+
+end
+
+task 1:
+======
+
+To install apache package:
+=========================
+
+code 1:
+=======
+
+package "httpd"do
+
+action :install
+
+end
+
+file "/root/index.html"do
+
+action :create
+content "welcome devops engineer"
+end
+
+code 2: TO start the httpd sevice
+=====
+
+service "httpd"do 
+
+action [:enabled, :start] 
+
+end
+
+======================================================================================================================================================================
+Resources:
+=========
+
+file ---
+
+directory
+
+package
+
+
+service
+
+excute
+
+bash
+
+user
+
+template
+
+cookbook_file
+
+action :
+=======
+
+create, delete, install, remove
+
+
+
+
+
+action: create, delete ,installed, restart, stop, start, enable
+====
+
+ Option action must be equal to one of: nothin g, enable, disable, start, stop, restart, reload, mask, unmask!
+

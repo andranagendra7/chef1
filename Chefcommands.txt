@@ -1,0 +1,160 @@
+
+
+knife cookbook list
+
+knife node list
+
+
+knife client list 
+
+knife role list
+
+
+ knife cookbook upload  think
+
+knife cookbook delete think
+
+ knife cookbook create think
+
+
+
+knife cookbook test think
+
+
+knife node run list add nodename [ cookbookname::recipe ]
+
+ 
+
+WARNING: DEPRECATED: Please use ChefSpec or Rubocop to syntax-check cookbooks.
+checking think
+Running syntax check on think
+Validating ruby files
+Validating templates
+
+
+ knife bootstrap << IP >> --sudo -x [ username ] -i [ key-path ]  -N "nodename"  -r recipe[ cookbookname ] ---> if instance in aws
+
+ knife bootstrap << IP >> --sudo -x [ username ] -P "password"  -N "nodename"  -r recipe[ cookbookname ] ---> if instance in physical server or virtual server
+
+ knife bootstrap << IP >> --sudo -x [ username ] -i [ key-path ]  -N "nodename"  -r recipe[ cookbookname ] ---> if instance in aws
+
+
+
+
+knife bootstrap 54.243.15.216 --sudo -x ec2-user -i /root/shell.pem -N "positive" -r recipe[think]  -->Redhat family
+
+knife bootstrap 54.243.15.216 --sudo -x ubuntu -i /root/shell.pem -N "positive" -r recipe[think] --> Debian family
+
+
+
+Node machine:
+
+
+chef-client
+
+chef-client -r recipe [ cookbookname::recipename ] 
+
+chef-client  -o cookbookname@version
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+chef-role :
+==========
+
+
+knife role list 
+
+
+export EDITOR=vi
+
+knife role create [ rolename ] 
+
+
+syntax:
+
+
+"run_list": ["recipe[cookbook_name::recipe_name]",
+                 "role[role_name]"
+   ],
+
+
+knife role show role name
+
+
+role creation by using knife command line tool:
+==============================================
+
+vi rolename.rb
+
+name << "rolename" >>
+
+description "for devop enginerr"
+
+run_list [ << "recipe[cookbookname]" >> ], [ << "recipe[ cookbookname ]" >> ]
+
+
+example:
+
+name "devops1"
+
+description "for devop enginerr"
+
+run_list "recipe[think]","recipe[web]"
+
+
+now uploading role workstau=tion to chef-server:
+
+
+knife role from file [ << rolename.rb >> ]
+
+knife role list
+
+
+knife role show [ rolename ]
+
+knfe role  
+knife role --help
+
+
+knife role run list add  [ role name ]  << recipe[cookbookaname] >>
+
+
+ knife node run list add  positive role[think]
+
+
+
+======================================================================================================================================================================
+
+
+
+docker install by chef:
+======================
+
+
+package "docker"do
+
+action :install
+
+end
+
+service "docker"do
+
+action [ :enable, :start ]
+
+
+end
+
+
+execute "to run docker container"do
+
+
+
+command 'docker run -dti --name nag centos /bin/bash'
+
+end
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ 

@@ -1,0 +1,25 @@
+uname -m 
+
+uname -a
+
+uname -r
+
+
+cat /etc/issue
+
+clear
+
+history
+
+hostname
+
+
+sudo -i
+
+cd 
+
+cp 
+mv
+
+ifconfig
+

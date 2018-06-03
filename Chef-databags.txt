@@ -1,0 +1,152 @@
+chef data bags:
+===============
+
+if we want to pass the secure data  in chef by using  data bag's
+
+-> data baga is json variable --> we can define json file key's and value's
+
+step 1: first we  create data bag 
+ 
+
+synatx of data dat bag creation:
+======
+
+knife data bag create [ databage name]
+
+
+knife data bag list  ----> To display the list of data bag's are here
+
+example:
+
+knife data bag create user_password
+
+knife data bag list 
+
+
+step 2: now we are creaing .json file or data bag item inside the cookbook.
+
+
+now we creates databag item synatx:
+==================================
+
+vi cookbooks/[ cookbookname]/[ filename.json ]
+
+{
+"key" : "value",
+
+"key" : "value"
+}
+
+
+example:
+========
+
+vi user/user.json
+
+{
+"id" : "nag",
+"password" : "nag5179"
+}
+
+
+
+
+step 3: now we add the data bag item to databag and upload to the chef-server by using bellow command:
+
+syntax:
+ 
+knife data bag from file [ databag name/ itemname ] ===> To upload the databag workstation to server
+
+
+example:  
+
+knife data bag from file user_password user/user.json
+
+
+knife databag show [ databag name ]  -> to diplay databag infeormation
+
+
+knife databag show [ databag name ] [item name] To display databag_item information
+
+ 
+step 4: now we develop cookbook for user creation 
+
+
+
+knife cookbook 0create [ cookbookname ]
+
+vi cookbooks/user/recipes/default.rb
+
+varible = data_bag_item('databagname','itemname')
+
+user "username"do
+
+id  '----'
+home '--/username'
+
+password varibale"password"
+
+:wq!
+
+
+
+example:
+=======
+
+
+vi cookbooks/user/user.json
+
+user_pass = data_bag_item('user_password','nag')
+
+user "nagendra" do
+
+comment 'hello wrold'
+uid 2222
+home '/home/nagendra'
+shell '/bin/bash'
+password user_pass['password']
+end
+
+step 5: now cookbook upload to the chef-server
+
+
+
+knife cookbook upload user
+
+
+step 6: now we move to client machine
+
+
+chef-client -r "user"
+
+
+Here user successfuly created
+
+
+
+===========================================================================================================================================================================
+
+
+note: linux command for encryption the password:
+
+
+openssl passwd -1  -salt << username >>  <<< password >>>
+
+
+example:
+
+openssl passwd -1  -salt nag naendra
+
+
+
+
+
+  knife data bag show user_password
+cd data
+
+vi itemname.son
+
+{
+"id": "value",
+"key": "value"
+}

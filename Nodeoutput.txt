@@ -1,0 +1,138 @@
+node machine output:
+
+root@ip-172-31-74-199:~# chef-client
+[2017-11-11T05:28:22+00:00] INFO: Forking chef instance to converge...
+Starting Chef Client, version 12.21.26
+[2017-11-11T05:28:22+00:00] INFO: *** Chef 12.21.26 ***
+[2017-11-11T05:28:22+00:00] INFO: Platform: x86_64-linux
+[2017-11-11T05:28:22+00:00] INFO: Chef-client pid: 1927
+[2017-11-11T05:28:22+00:00] INFO: The plugin path /etc/chef/ohai/plugins does no                                                                                        t exist. Skipping...
+[2017-11-11T05:28:23+00:00] INFO: Run List is [recipe[think]]
+[2017-11-11T05:28:23+00:00] INFO: Run List expands to [think]
+[2017-11-11T05:28:23+00:00] INFO: Starting Chef Run for positive
+[2017-11-11T05:28:23+00:00] INFO: Running start handlers
+[2017-11-11T05:28:23+00:00] INFO: Start handlers complete.
+[2017-11-11T05:28:23+00:00] INFO: HTTP Request Returned 404 Not Found:
+[2017-11-11T05:28:23+00:00] INFO: Error while reporting run start to Data Collec                                                                                        tor. URL: https://api.chef.io/organizations/test5179/data-collector Exception: 4                                                                                        04 -- 404 "Not Found"  (This is normal if you do not have Chef Automate)
+resolving cookbooks for run list: ["think"]
+[2017-11-11T05:28:23+00:00] INFO: Loading cookbooks [think@0.1.0]
+Synchronizing Cookbooks:
+[2017-11-11T05:28:24+00:00] INFO: Storing updated cookbooks/think/README.md in t                                                                                        he cache.
+[2017-11-11T05:28:24+00:00] INFO: Storing updated cookbooks/think/recipes/defaul                                                                                        t.rb in the cache.
+[2017-11-11T05:28:24+00:00] INFO: Storing updated cookbooks/think/CHANGELOG.md i                                                                                        n the cache.
+[2017-11-11T05:28:24+00:00] INFO: Storing updated cookbooks/think/metadata.rb in                                                                                         the cache.
+  - think (0.1.0)
+Installing Cookbook Gems:
+Compiling Cookbooks...
+[2017-11-11T05:28:24+00:00] INFO: HTTP Request Returned 404 Not Found:
+Converging 1 resources
+Recipe: think::default
+  * file[/root/chef] action create[2017-11-11T05:28:24+00:00] INFO: Processing f                                                                                        ile[/root/chef] action create (think::default line 11)
+[2017-11-11T05:28:24+00:00] INFO: file[/root/chef] created file /root/chef
+
+    - create new file /root/chef[2017-11-11T05:28:24+00:00] INFO: file[/root/chef] updated file contents /root/chef
+
+    - update content in file /root/chef from none to 24db4d
+    --- /root/chef      2017-11-11 05:28:24.076726524 +0000
+    +++ /root/.chef-chef20171111-1927-fapgew    2017-11-11 05:28:24.076726524 +0000
+    @@ -1 +1,2 @@
+    +hello welcome to chef world
+[2017-11-11T05:28:24+00:00] INFO: Chef Run complete in 0.376440782 seconds
+
+Running handlers:
+[2017-11-11T05:28:24+00:00] INFO: Running report handlers
+Running handlers complete
+[2017-11-11T05:28:24+00:00] INFO: Report handlers complete
+Chef Client finished, 1/1 resources updated in 01 seconds
+[2017-11-11T05:28:24+00:00] INFO: Sending resource update report (run-id: a232cdca-88d7-4d41-8150-3c2cab8798c0)
+
+
+-----------------------
+
+code 2 error:
+
+
+root@ip-172-31-74-199:~# chef-client -o think@0.220.0
+[2017-11-11T05:49:58+00:00] INFO: Forking chef instance to converge...
+Starting Chef Client, version 12.21.26
+[2017-11-11T05:49:58+00:00] INFO: *** Chef 12.21.26 ***
+[2017-11-11T05:49:58+00:00] INFO: Platform: x86_64-linux
+[2017-11-11T05:49:58+00:00] INFO: Chef-client pid: 2968
+[2017-11-11T05:49:58+00:00] INFO: The plugin path /etc/chef/ohai/plugins does no                                                                                        t exist. Skipping...
+[2017-11-11T05:50:00+00:00] WARN: Run List override has been provided.
+[2017-11-11T05:50:00+00:00] WARN: Original Run List: [recipe[think]]
+[2017-11-11T05:50:00+00:00] WARN: Overridden Run List: [recipe[think@0.220.0]]
+[2017-11-11T05:50:00+00:00] INFO: Run List is [recipe[think@0.220.0]]
+[2017-11-11T05:50:00+00:00] INFO: Run List expands to [think@0.220.0]
+[2017-11-11T05:50:00+00:00] INFO: Starting Chef Run for positive
+[2017-11-11T05:50:00+00:00] INFO: Running start handlers
+[2017-11-11T05:50:00+00:00] INFO: Start handlers complete.
+[2017-11-11T05:50:00+00:00] INFO: HTTP Request Returned 404 Not Found:
+[2017-11-11T05:50:00+00:00] INFO: Error while reporting run start to Data Collec                                                                                        tor. URL: https://api.chef.io/organizations/test5179/data-collector Exception: 4                                                                                        04 -- 404 "Not Found"  (This is normal if you do not have Chef Automate)
+resolving cookbooks for run list: ["think@0.220.0"]
+[2017-11-11T05:50:00+00:00] INFO: Loading cookbooks [think@0.220.0]
+[2017-11-11T05:50:00+00:00] INFO: Skipping removal of obsoleted cookbooks from t                                                                                        he cache
+Synchronizing Cookbooks:
+[2017-11-11T05:50:00+00:00] INFO: Storing updated cookbooks/think/recipes/defaul                                                                                        t.rb in the cache.
+[2017-11-11T05:50:00+00:00] INFO: Storing updated cookbooks/think/metadata.rb in                                                                                         the cache.
+  - think (0.220.0)
+Installing Cookbook Gems:
+Compiling Cookbooks...
+
+================================================================================
+Recipe Compile Error in /var/chef/cache/cookbooks/think/recipes/default.rb
+================================================================================
+
+NoMethodError
+-------------
+undefined method `content' for Chef::Resource::Directory
+
+Cookbook Trace:
+---------------
+  /var/chef/cache/cookbooks/think/recipes/default.rb:15:in `block in from_file'
+  /var/chef/cache/cookbooks/think/recipes/default.rb:11:in `from_file'
+
+Relevant File Content:
+----------------------
+/var/chef/cache/cookbooks/think/recipes/default.rb:
+
+  8:  #
+  9:
+ 10:
+ 11:  directory  "/root/chef"do
+ 12:
+ 13:  action :create
+ 14:
+ 15>> content "hello welcome to chef world"
+ 16:
+ 17:  end
+ 18:
+ 19:  file '/root/chef/nagendra'do
+ 20:
+ 21:  action :create
+ 22:
+ 23:  content "welcomet devops world"
+ 24:
+
+System Info:
+------------
+chef_version=12.21.26
+platform=ubuntu
+platform_version=16.04
+ruby=ruby 2.3.5p376 (2017-09-14 revision 59905) [x86_64-linux]
+program_name=chef-client worker: ppid=2963;start=05:49:58;
+executable=/opt/chef/bin/chef-client
+
+
+Running handlers:
+[2017-11-11T05:50:00+00:00] ERROR: Running exception handlers
+Running handlers complete
+[2017-11-11T05:50:00+00:00] ERROR: Exception handlers complete
+Chef Client failed. 0 resources updated in 01 seconds
+[2017-11-11T05:50:00+00:00] INFO: Sending resource update report (run-id: ed0c5b                                                                                        8d-9b7c-46a7-b10b-5111104813df)
+[2017-11-11T05:50:00+00:00] FATAL: Stacktrace dumped to /var/chef/cache/chef-sta                                                                                        cktrace.out
+[2017-11-11T05:50:00+00:00] FATAL: Please provide the contents of the stacktrace                                                                                        .out file if you file a bug report
+[2017-11-11T05:50:00+00:00] ERROR: undefined method `content' for Chef::Resource                                                                                        ::Directory
+[2017-11-11T05:50:00+00:00] FATAL: Chef::Exceptions::ChildConvergeError: Chef ru                                                                                        n process exited unsuccessfully (exit code 1)
+
+

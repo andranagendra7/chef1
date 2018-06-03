@@ -1,0 +1,172 @@
+chef work practice:
+
+[root@workstation nag]# vi file.rb
+[root@workstation nag]# chef-apply file.rb
+[2017-11-11T01:33:51+00:00] INFO: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
+Recipe: (chef-apply cookbook)::(chef-apply recipe)
+  * file[/root/nag] action create
+    - create new file /root/nag
+    - restore selinux security context
+
+[root@workstation nag]# cat file.rb
+
+
+file "/root/nag" do
+
+
+action :create
+end
+
+code 2:
+
+
+[root@workstation nag]# cat file1.rb
+
+
+file "/root/nag" do
+
+content "hello nagedra good morning "
+
+end
+
+
+anaconda-ks.cfg  chef  nag  original-ks.cfg
+[root@workstation nag]# vi file1.rb
+[root@workstation nag]# chef-apply file1.rb
+[2017-11-11T01:36:19+00:00] INFO: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
+Recipe: (chef-apply cookbook)::(chef-apply recipe)
+  * file[/root/nag] action create
+    - update content in file /root/nag from e3b0c4 to 683839
+    --- /root/nag       2017-11-11 01:33:52.892572268 +0000
+    +++ /root/.chef-nag20171111-25307-h2v6ae    2017-11-11 01:36:20.907654734 +0000
+    @@ -1 +1,2 @@
+    +hello nagedra good morning
+    - restore selinux security context
+
+[root@workstation nag]# chef-apply dir.rb
+[2017-11-11T01:48:59+00:00] INFO: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
+Recipe: (chef-apply cookbook)::(chef-apply recipe)
+  * directory[ /root/kelly ] action create
+    * Parent directory  /root does not exist, cannot create  /root/kelly
+    ================================================================================
+    Error executing action `create` on resource 'directory[ /root/kelly ]'
+    ================================================================================
+
+    Chef::Exceptions::EnclosingDirectoryDoesNotExist
+    ------------------------------------------------
+    Parent directory  /root does not exist, cannot create  /root/kelly
+
+    Resource Declaration:
+    ---------------------
+    # In dir.rb
+
+      5: directory ' /root/kelly ' do
+      6:
+      7:
+      8: action :create
+      9:
+     10: end
+     11:
+
+    Compiled Resource:
+    ------------------
+    # Declared in dir.rb:5:in `run_chef_recipe'
+
+    directory(" /root/kelly ") do
+      action [:create]
+      retries 0
+      retry_delay 2
+      default_guard_interpreter :default
+      path " /root/kelly "
+      declared_type :directory
+      cookbook_name "(chef-apply cookbook)"
+      recipe_name "(chef-apply recipe)"
+      owner nil
+      group nil
+      mode nil
+    end
+
+    System Info:
+    ------------
+    chef_version=12.21.2
+    platform=redhat
+    platform_version=7.4
+    ruby=ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux]
+    program_name=/bin/chef-apply
+    executable=/opt/chefdk/bin/chef-apply
+
+[2017-11-11T01:49:00+00:00] FATAL: Stacktrace dumped to /var/chef/cache/chef-stacktrace.out
+[2017-11-11T01:49:00+00:00] FATAL: Please provide the contents of the stacktrace.out file if you file a bug report
+[2017-11-11T01:49:00+00:00] FATAL: Chef::Exceptions::EnclosingDirectoryDoesNotExist: directory[ /root/kelly ] ((chef-apply cookbook)::(chef-apply recipe) line 5) had an error: Chef::Exceptions::EnclosingDirectoryDoesNotExist: Parent directory  /root does not exist, cannot create  /root/kelly
+[root@workstation nag]# vi dir.rb
+[root@workstation nag]# chef-apply dir.rb
+[2017-11-11T01:50:00+00:00] INFO: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
+Recipe: (chef-apply cookbook)::(chef-apply recipe)
+  * directory[/root/kelly] action create
+    - create new directory /root/kelly
+    - restore selinux security context
+
+
+[2017-11-11T01:55:06+00:00] INFO: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
+Recipe: (chef-apply cookbook)::(chef-apply recipe)
+  * yum_package[vsftdp] action install
+
+^C
+
+    ================================================================================
+    Error executing action `install` on resource 'yum_package[vsftdp]'
+    ================================================================================
+
+    Interrupt
+    ---------
+
+
+    Resource Declaration:
+    ---------------------
+    # In vf.rb
+
+      4: package "vsftdp"do
+      5:
+
+    Compiled Resource:
+    ------------------
+    # Declared in vf.rb:4:in `run_chef_recipe'
+
+    yum_package("vsftdp") do
+      package_name "vsftdp"
+      action [:install]
+      retries 0
+      retry_delay 2
+      default_guard_interpreter :default
+      declared_type :package
+      cookbook_name "(chef-apply cookbook)"
+      recipe_name "(chef-apply recipe)"
+      flush_cache {:before=>false, :after=>false}
+    end
+
+    System Info:
+    ------------
+    chef_version=12.21.2
+    platform=redhat
+    platform_version=7.4
+    ruby=ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux]
+    program_name=/bin/chef-apply
+    executable=/opt/chefdk/bin/chef-apply
+
+[2017-11-11T01:55:32+00:00] FATAL: Stacktrace dumped to /var/chef/cache/chef-stacktrace.out
+[2017-11-11T01:55:32+00:00] FATAL: Please provide the contents of the stacktrace.out file if you file a bug report
+
+
+
+[2017-11-11T01:57:32+00:00] INFO: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
+Recipe: (chef-apply cookbook)::(chef-apply recipe)
+  * yum_package[httpd] action install
+    - install version 2.4.6-67.el7_4.6 of package httpd
+[root@workstation nag]# vi vf.rb
+[root@workstation nag]# chef-apply vf.rb
+[2017-11-11T01:59:55+00:00] INFO: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
+Recipe: (chef-apply cookbook)::(chef-apply recipe)
+  * yum_package[httpd] action purge
+    - purge  package httpd
+
+[2017-11-11T01:55:32+00:00] FATAL: Interrupt: yum_package[vsftdp] ((chef-apply cookbook)::(chef-apply recipe) line 4) had an error: Interrupt:
